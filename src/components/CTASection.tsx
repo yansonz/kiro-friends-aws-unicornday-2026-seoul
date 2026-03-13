@@ -79,39 +79,6 @@ export default function CTASection({ character }: CTASectionProps) {
         >
           {t('cta.awsKr')}
         </a>
-        
-        {/* 크레딧 */}
-        <div className="text-purple-400 text-xs">
-          <a
-            href="https://www.linkedin.com/in/yanso"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackCTAClick('developer_credit', 'cta_section', { character: character.slug })}
-            className="hover:text-purple-300 underline underline-offset-4 transition-colors duration-200"
-          >
-            {t('cta.developer')}
-          </a>
-          {' | '}
-          <a
-            href={`https://yanlog.yanbert.com/${locale === 'ja' ? 'en' : locale}/blog/kiro-friends-introduction-20260217/?utm_source=kiro-friends&utm_medium=result-page&utm_campaign=dev-blog`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackCTAClick('dev_blog', 'cta_section', { character: character.slug })}
-            className="hover:text-purple-300 underline underline-offset-4 transition-colors duration-200"
-          >
-            {t('cta.devBlog')}
-          </a>
-        </div>
-        <a
-          href="https://www.linkedin.com/in/jiyeon-choi-47ab9623a"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackCTAClick('character_designer_credit', 'cta_section', { character: character.slug })}
-          className="text-purple-400 hover:text-purple-300 underline underline-offset-4
-                     transition-colors duration-200"
-        >
-          {t('cta.character')}
-        </a>
       </div>
     </section>
   );

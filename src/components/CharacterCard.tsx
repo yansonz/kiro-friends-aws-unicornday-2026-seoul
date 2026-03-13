@@ -11,6 +11,7 @@ import { getCharacterBySlug } from '@/data/characters';
 import { useTranslation } from '@/lib/hooks/useTranslation';
 import Toast from './Toast';
 import { withBasePath } from '@/lib/basePath';
+import { characterAWSRecommendations, awsServices } from '@/data/aws-services';
 
 interface CharacterCardProps {
   character: CharacterProfile;
@@ -181,6 +182,40 @@ export default function CharacterCard({ character, compact = false }: CharacterC
           ))}
         </div>
       </div>
+
+      {/* 추천 AWS 서비스 */}
+      {characterAWSRecommendations[character.slug] && (
+        <div className="mb-6" data-testid="aws-services-section">
+          <h3 className="text-purple-300 font-bold mb-3 flex items-center gap-2 text-sm">
+            <span>☁️</span> {t('result.awsServices')}
+          </h3>
+          <p className="text-gray-400 text-xs mb-3 leading-relaxed">
+            {characterAWSRecommendations[character.slug].recommendationText[locale]}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {characterAWSRecommendations[character.slug].awsServices.map((serviceName) => {
+              const service = awsServices[serviceName];
+              if (!service) return null;
+              
+              return (
+                <a
+                  key={service.id}
+                  href={service.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium
+                             bg-orange-950/30 border border-orange-800/40 text-orange-200
+                             hover:bg-orange-950/50 hover:border-orange-700/60 
+                             transition-all active:scale-95"
+                  data-testid="aws-service-tag"
+                >
+                  {service.name}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* 시너지 캐릭터 / 긴장 캐릭터 (Req 6.6) */}
       <div className="grid grid-cols-1 gap-3" data-testid="relations-section">
