@@ -8,6 +8,7 @@ import type { CharacterProfile } from '@/lib/types';
 import Toast from './Toast';
 import { useTranslation } from '@/lib/hooks/useTranslation';
 import { trackShare } from '@/lib/analytics';
+import { withBasePath } from '@/lib/basePath';
 
 interface ShareButtonsProps {
   character: CharacterProfile;
@@ -39,7 +40,7 @@ export default function ShareButtons({ character, resultUrl, onLinkCopied }: Sha
   // 이미지 다운로드 핸들러
   const handleDownloadImage = () => {
     const link = document.createElement('a');
-    link.href = `/og/${character.slug}-${locale}.png`;
+    link.href = withBasePath(`/og/${character.slug}-${locale}.png`);
     link.download = `kiro-friends-${character.slug}-${locale}.png`;
     document.body.appendChild(link);
     link.click();
