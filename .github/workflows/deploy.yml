@@ -36,6 +36,7 @@ jobs:
 
       - name: Build Next.js
         env:
+          NODE_ENV: production
           NEXT_PUBLIC_AMPLITUDE_API_KEY: ${{ secrets.AMPLITUDE_API_KEY }}
         run: npm run build
 
