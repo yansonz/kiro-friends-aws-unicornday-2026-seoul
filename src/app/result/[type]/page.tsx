@@ -12,6 +12,7 @@ import ResultPageClient from './client';
 import ResultClientWrapper from './result-client-wrapper';
 import QuizCTAButtonWrapper from '@/components/QuizCTAButtonWrapper';
 import ResultPageContent from './result-page-content';
+import { basePath } from '@/lib/basePath';
 
 // 10개 캐릭터 슬러그를 빌드 타임에 사전 생성 (Req 11.1)
 export function generateStaticParams() {
@@ -73,8 +74,8 @@ export default async function ResultPage({
     notFound();
   }
 
-  // 공유 URL 생성 (정적 사이트이므로 상대 경로 기반)
-  const resultUrl = `https://kiro-friends.yanbert.com/result/${character.slug}`;
+  // 공유 URL 생성 (GitHub Pages basePath 포함)
+  const resultUrl = `https://yansonz.github.io${basePath}/result/${character.slug}`;
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
