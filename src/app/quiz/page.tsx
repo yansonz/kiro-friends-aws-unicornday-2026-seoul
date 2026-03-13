@@ -11,6 +11,7 @@ import ProgressBar from '@/components/ProgressBar';
 import { useTranslation } from '@/lib/hooks/useTranslation';
 import Image from 'next/image';
 import { trackQuizStart, trackQuizQuestion, trackQuizAnswer, trackQuizComplete } from '@/lib/analytics';
+import { withBasePath } from '@/lib/basePath';
 
 /** 전체 질문 수 */
 const TOTAL_QUESTIONS = 16;
@@ -133,7 +134,7 @@ export default function QuizPage() {
             }}
           >
             <Image
-              src={`/characters/${char.image}.png`}
+              src={withBasePath(`/characters/${char.image}.png`)}
               alt=""
               width={char.size}
               height={char.size}

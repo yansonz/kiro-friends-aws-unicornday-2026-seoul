@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { characters } from '@/data/characters';
 import { useTranslation } from '@/lib/hooks/useTranslation';
 import { trackHomeLanding, trackCTAClick } from '@/lib/analytics';
+import { withBasePath } from '@/lib/basePath';
 
 /** 10개 캐릭터 이모지를 원형으로 배치하기 위한 각도 계산 */
 function getCirclePosition(index: number, total: number) {
@@ -62,7 +63,7 @@ export default function Home() {
                       title={char.name[locale]}
                     >
                       <Image
-                        src={`/characters/${char.slug}.png`}
+                        src={withBasePath(`/characters/${char.slug}.png`)}
                         alt={char.name[locale]}
                         width={80}
                         height={80}
@@ -79,7 +80,7 @@ export default function Home() {
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <div className="flex h-24 w-24 items-center justify-center">
               <Image
-                src="/characters/kiro.png"
+                src={withBasePath("/characters/kiro.png")}
                 alt="Kiro"
                 width={128}
                 height={128}

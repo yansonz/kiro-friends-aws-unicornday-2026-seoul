@@ -10,6 +10,7 @@ import type { CharacterProfile } from '@/lib/types';
 import { getCharacterBySlug } from '@/data/characters';
 import { useTranslation } from '@/lib/hooks/useTranslation';
 import Toast from './Toast';
+import { withBasePath } from '@/lib/basePath';
 
 interface CharacterCardProps {
   character: CharacterProfile;
@@ -52,7 +53,7 @@ export default function CharacterCard({ character, compact = false }: CharacterC
       >
         <div className="mb-2 flex justify-center" data-testid="character-emoji">
           <Image
-            src={`/characters/${character.slug}.png`}
+            src={withBasePath(`/characters/${character.slug}.png`)}
             alt={character.name[locale]}
             width={80}
             height={80}
@@ -86,7 +87,7 @@ export default function CharacterCard({ character, compact = false }: CharacterC
           data-testid="character-emoji"
         >
           <Image
-            src={`/characters/${character.slug}.png`}
+            src={withBasePath(`/characters/${character.slug}.png`)}
             alt={character.name[locale]}
             width={160}
             height={160}
@@ -200,7 +201,7 @@ export default function CharacterCard({ character, compact = false }: CharacterC
             data-testid="synergy-character"
           >
             <Image
-              src={`/characters/${synergyCharacter.slug}.png`}
+              src={withBasePath(`/characters/${synergyCharacter.slug}.png`)}
               alt={synergyCharacter.name[locale]}
               width={48}
               height={48}
@@ -231,7 +232,7 @@ export default function CharacterCard({ character, compact = false }: CharacterC
             data-testid="tension-character"
           >
             <Image
-              src={`/characters/${tensionCharacter.slug}.png`}
+              src={withBasePath(`/characters/${tensionCharacter.slug}.png`)}
               alt={tensionCharacter.name[locale]}
               width={48}
               height={48}
