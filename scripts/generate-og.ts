@@ -477,6 +477,15 @@ async function main() {
     fs.writeFileSync(defaultPath, defaultPng);
     console.log(`✅ default-${locale}.png (${defaultPng.length} bytes)`);
   }
+  
+  // 기본 default.png 생성 (한국어 버전 사용)
+  const defaultMarkup = createDefaultOgMarkup(bgImageSrc, 'ko');
+  const defaultSvg = await satori(defaultMarkup as React.ReactElement, satoriOptions);
+  const defaultPng = svgToPng(defaultSvg);
+  const defaultPath = path.join(OUTPUT_DIR, 'default.png');
+  fs.writeFileSync(defaultPath, defaultPng);
+  console.log(`✅ default.png (${defaultPng.length} bytes) (기본)`);
+
 
   // 2. 캐릭터별 OG 이미지 생성 (각 언어별)
   for (const character of characters) {
@@ -488,9 +497,17 @@ async function main() {
       fs.writeFileSync(filePath, png);
       console.log(`✅ ${character.slug}-${locale}.png (${png.length} bytes) - ${character.emoji} ${character.name[locale]}`);
     }
+    
+    // 기본 이미지 생성 (한국어 버전 사용)
+    const defaultMarkup = createCharacterOgMarkup(character, bgImageSrc, 'ko');
+    const defaultSvg = await satori(defaultMarkup as React.ReactElement, satoriOptions);
+    const defaultPng = svgToPng(defaultSvg);
+    const defaultPath = path.join(OUTPUT_DIR, `${character.slug}.png`);
+    fs.writeFileSync(defaultPath, defaultPng);
+    console.log(`✅ ${character.slug}.png (${defaultPng.length} bytes) - ${character.emoji} ${character.name.ko} (기본)`);
   }
 
-  console.log(`\n🎉 OG 이미지 ${(characters.length + 1) * 3}개 생성 완료 → ${OUTPUT_DIR}`);
+  console.log(`\n🎉 OG 이미지 ${(characters.length + 1) * 3 + characters.length + 1}개 생성 완료 → ${OUTPUT_DIR}`);
 }
 
 main().catch((err) => {
