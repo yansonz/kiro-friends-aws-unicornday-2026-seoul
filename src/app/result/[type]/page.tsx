@@ -32,8 +32,8 @@ export async function generateMetadata({
     return { title: 'Kiro 프렌즈' };
   }
 
-  const ogImageUrl = `https://kiro-friends.yanbert.com/og/${character.slug}.png`;
-  const pageUrl = `https://kiro-friends.yanbert.com/result/${character.slug}`;
+  const ogImageUrl = `https://yansonz.github.io${basePath}/og/${character.slug}.png`;
+  const pageUrl = `https://yansonz.github.io${basePath}/result/${character.slug}`;
 
   return {
     title: `${character.name.ko} - Kiro 프렌즈`,
